@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+  <link rel="stylesheet" href="index.css">
+  <link rel="stylesheet" href="page1.css">
+  <title>Hotel</title>
+</head>
+<body>
+  <div class="wrapper" >
+    <header class="header" >
+      <a href="" class="logo-link"><img src="Assets/OrNoir Home.svg" alt="" class="logo"></a>
+      <div class="menu"  >
+        <i class="fa-solid fa-xmark" style="color: #000000;" data-aos="fade-up"></i>
+        <nav class="navbar" data-aos="fade-up">
+          <ul data-aos="zoom-in">
+            <li><a href="#section3">Location</a></li>
+            <li><a href="#section2">A vendre</a></li>
+            <li><a href="#section4">Contact</a></li>
+          </ul>
+        </nav>
+        <div class="select-phone" data-aos="fade-up">
+          <a href="tel:+242XXXXXX" class="call-icon-link"><img src="Assets/Call icon.svg" alt="call Hotel" class="call-icon"> </a>
+          <div class="select-language" data-aos="fade-up">
+            <select name="" id="" >
+              <option value="En">🇲🇫</option>
+              <option value="Fr">🇺🇸</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <i class="fa-solid fa-bars" style="color: black;" ></i>
+    </header>
+    <main >
+      <section id="section1" class="section-presentation">
+        <h1 data-aos="zoom-in-up" >MAISON TITRÉE À VENDRE</h1>
+        <h3 data-aos="zoom-in-up" >Un cadre exceptionel,à proximité de la<br>nature et de toutes les commodités</h3>
+        <p data-aos="zoom-in-up" >Au Congo Brazzaville,située Pointe-noire. <br>
+        Cette magnifique propriété de 1500m² vous offre un espace de vie <br>
+      moderne avec une vue imprenabel sur le lac idéale pour une résidence <br>
+      familiale ou un investissement </p>
+      <a href="#" class="btn" data-aos="fade-right"
+     data-aos-offset="300"
+     data-aos-easing="ease-in-sine"  data-page="page2" onclick="chargerPage(this.getAttribute('data-page'))" >Découvrez cette propriété </a>
+      </section>
+      <section id="section2" class="section-details" >
+        <h3 data-aos="fade-left">Identifications <br>
+        Informations Légales <br><br>
+      <img src="Assets/Underline.svg" alt=""></h1>
+        
+          <h1 data-aos="fade-up">Détails de la propriété</h1>
+          <p data-aos="fade-up">Située au bord d'un magnifique lac à Pointe-noire,cette propriété unique offre <br> cadre paisible et un vaste espace pour profiter de la nature  </p>
+          <p class="price"><strong>550 000$</strong></p>
+          <a href="" class="btn"><i class="fa-solid fa-phone"></i> call</a>
+      </section>
+      <section id="section3" class="section-information" data-aos="fade-up">
+          <ol class="details-list" data-aos="fade-up"> 
+            <li class="detail-item" data-aos="fade-up">
+              <h3 class="detail-title" data-aos="fade-up">Identification et Informations légales</h3>
+              <p class="detail-subtitle" data-aos="fade-up">Détails de la propriété</p>
+              <p class="detail-subtitle" data-aos="fade-up">Informations clés</p>
+              <ul class="sub-details-list"data-aos="fade-up"> 
+                <li><span class="detail-label">Adresse : </span>Siafoumou, Pointe-Noire, Congo-Brazzaville</li>
+                <li><span class="detail-label" data-aos="fade-up">Objet : </span>Propriété de M.</li>
+                <li><span class="detail-label" data-aos="fade-up">Année de construction : </span>2008</li>
+                <li><span class="detail-label" data-aos="fade-up">Date d'expertise : </span>19 juin 2023</li>
+                <li><span class="detail-label" data-aos="fade-up">Superficie du terrain : </span>1500 m²</li>
+                <li><span class="detail-label" data-aos="fade-up">Superficie du bâtiment : </span>Surface habitable de [ajouter la surface précise]</li> 
+              </ul>  
+            </li>
+            <li class="detail-item">
+              <h3 class="detail-title" data-aos="fade-up">Descriptif de la Propriété</h3>
+              <p class="detail-subtitle" data-aos="fade-up">Visite virtuelle</p>
+              <p class="detail-subtitle" data-aos="fade-up">Explorez chaque recoin de la maison</p>
+              <ul class="sub-details-list" data-aos="fade-up">
+                <li><span class="detail-label" data-aos="fade-up">Bâtiment principal : </span>Un espace raffiné, idéal pour toute la famille.</li>
+                  <ul class="nested-list" data-aos="fade-up">
+                    <li>
+                      <span class="detail-label"data-aos="fade-up">Rez-de-chaussée : </span>
+                      Deux salons spacieux, salle à manger ouverte, cuisine <br>moderne,
+                      véranda, chambre extérieure avec salle de bain, terrasse <br>
+                      postérieure.
+                    </li>
+                    <li data-aos="fade-up">
+                      <span class="detail-label" data-aos="fade-up">Étage : </span>
+                      Suite parentale avec dressing et balcon, chambres 2 et 3 avec <br>
+                      salles de bain privatives, bureau avec balcon.
+                    </li>
+                  </ul>
+                </li>
+                <li>
+                  <span class="detail-label">Dépendance : </span>
+                  Séjour indépendant, chambre, cuisine, et toilettes externes <br> pour
+                  plus d'intimité et de confort.
+                </li>
+                <li>
+                  <span class="detail-label">Garage : </span>
+                  Garage couvert avec suffisamment de place pour plusieurs <br>
+                  véhicules.
+                </li>
+              </ul>
+            </li>
+
+          <div class="card-feature" data-aos="fade-right">
+            <div class="card-image-wrapper">
+                <img src="./Assets/BG/Fauteil.png" alt="Fauteuil dans une pièce de la maison" class="card-image">
+            </div>
+            <div class="card-content" data-aos="fade-up">
+              <h1 class="card-title">Explorez chaque recoin de la maison</h1>
+              <p class="card-description" data-aos="fade-up">
+                Un espace raffiné, idéal pour toute la famille. <br> Deux salons
+                spacieux, salle à manger ouverte, cuisine moderne, <br> véranda,
+                chambre extérieure avec salle de bain, terrasse postérieure.
+              </p>
+              <a href="#" class="btn btn-second">Découvrez cette propriété</a>
+            </div>
+          </div>
+
+          <li class="detail-item" data-aos="fade-up">
+            <h3 class="detail-title" data-aos="fade-up">Aménagement Extérieur</h3>
+            <p class="detail-subtitle" data-aos="fade-up">Un jardin paisible et un accès au lac</p>
+            <p class="detail-subtitle" data-aos="fade-up">Un cadre naturel qui complète parfaitement l'intérieur</p>
+            <ul class="sub-details-list" data-aos="fade-up">
+              <li data-aos="fade-up">
+                <span class="detail-label">Jardin : </span>
+                Des aires gazonnées entourées de bordures en maçonnerie, avec <br> des
+                allées en béton et pavés. Un jardin décoré avec des palmiers
+                exotiques, <br> manguier, avocatier et autres espèces.
+              </li>
+              <li>
+                <span class="detail-label">Vue sur le lac : </span>
+                Un accès direct à la rive du lac, idéal pour profiter du calme et <br>
+                de la beauté naturelle du paysage.
+              </li>
+            </ul>
+          </li>
+          <li class="detail-item" data-aos="fade-up">
+            <h3 class="detail-title" data-aos="fade-up">Sécurité et Clôture</h3>
+            <p class="detail-subtitle" data-aos="fade-up">Sécurité et intimité garanties</p>
+            <p class="detail-subtitle" data-aos="fade-up">Mur de clôture robuste et accès sécurisé au lac</p>
+            <ul class="sub-details-list" data-aos="fade-up">
+              <li data-aos="fade-up">
+                <span class="detail-label">Mur de clôture : </span>
+                Construite avec des matériaux durables, la clôture délimite <br>
+                parfaitement le terrain pour assurer la sécurité et l’intimité des
+                résidents.
+              </li>
+              <li>
+                <span class="detail-label">Portail et accès au lac : </span>
+                Un portail métallique et un portillon permettent <br> d'accéder
+                directement à la rive du lac, avec un environnement sécurisé et
+                calme.
+              </li>
+            </ul>
+          </li>
+
+          <li class="detail-item" data-aos="fade-up">
+            <h3 class="detail-title" data-aos="fade-up">Galerie de Photos</h3>
+            <p class="detail-subtitle"data-aos="fade-up">Galerie photo</p>
+            <p class="detail-subtitle" data-aos="fade-up">
+                Découvrez la beauté de la propriété à travers des images captivantes
+            </p>
+            <ul class="sub-details-list" data-aos="fade-up">
+                <li>
+                    <span class="detail-label">Album de photos : </span>
+                    Ajoute ici des photos de chaque partie de la maison <br> (intérieur,
+                    extérieur, vue sur le lac) pour donner une idée complète de la
+                    propriété.
+                </li>
+            </ul>
+          </li>
+          </ol>
+      </section>
+        <div class="galerie" data-aos="fade-up">
+          <div class="galerie-box"data-aos="fade-up">
+              <div class="img-content" data-aos="fade-up">
+                <img src="Assets/galerie/IMG-20241031-WA0138.png" alt="">
+                <div class="img-content-hover">
+                  <a href="" ><i class="fa-solid fa-arrow-up-right-from-square" style="background-color: white;color:black ;padding: 1rem ;border-radius: 50%;font-size:1rem;"></i></a>
+                </div>
+              </div>
+              <div class="img-content" data-aos="fade-up">
+                <img src="Assets/galerie/IMG-20241031-WA0143.png" alt="">
+                <div class="img-content-hover">
+                  <a href="" ><i class="fa-solid fa-arrow-up-right-from-square" style="background-color: white;color:black ;padding: 1rem ;border-radius: 50%;font-size:1rem;"></i></a>
+                </div>
+              </div>
+              <div class="img-content" data-aos="fade-up">
+                <img src="Assets/galerie/IMG-20241031-WA0158.png" alt="">
+                <div class="img-content-hover">
+                  <a href="" ><i class="fa-solid fa-arrow-up-right-from-square" style="background-color: white;color:black ;padding: 1rem ;border-radius: 50%;font-size:1rem;"></i></a>
+                </div>
+              </div>
+              <div class="img-content" data-aos="fade-up">
+                <img src="Assets/galerie/IMG-20241031-WA0171 1.png" alt="">
+                <div class="img-content-hover">
+                  <a href="" ><i class="fa-solid fa-arrow-up-right-from-square" style="background-color: white;color:black ;padding: 1rem ;border-radius: 50%;font-size:1rem;"></i></a>
+                </div>
+              </div>
+          </div>
+          <a href="#section1" data-aos="fade-up" class="btn btn-second">DECOUVRIR LA PROPRIETE</a>
+
+        </div>
+      </section data-aos="fade-up">
+      <section  id='section4' class="section-contact" data-aos="fade-up">
+        <h1>contact et informations <br> supplémentaires <br>
+        <img src="Assets/Underline.svg"  data-aos="fade-up" alt="">
+        </h1>
+        
+        <h2 data-aos="fade-up">Intéréssé par cette propriété?</h2>
+        <p data-aos="fade-up">Contactez nous pour plus d'informations ou pour organiser une visite</p>
+        <form action="../package.json" data-aos="fade-up" class="form-contact">
+          <div class="form-contact-box1" data-aos="fade-up">
+            <div class="input-box input-box-name">
+              <label for="name">Nom</label>
+              <input type="text" data-aos="fade-up" id="nom">
+              <i class="fa-solid fa-circle-check" data-aos="fade-up"></i>
+              <small>message d'erreur</small>
+            </div>
+            <div class="input-box input-box-email" data-aos="fade-up">
+              <label for="email">Email</label>
+              <input type="email" name="email" id="email"  data-aos="fade-up">
+              <i class="fa-solid fa-circle-check"></i>
+              <small>message d'erreur</small>
+            </div>
+            <div class="input-box input-box-number"  data-aos="fade-up">
+              <label for="number">Mobile</label>
+              <input type="number" name="number" id="numero"  data-aos="fade-up">
+              <i class="fa-solid fa-circle-check"></i>
+              <small>message d'erreur</small>
+            </div>
+          </div>
+          <div class="form-contact-box2"  data-aos="fade-up">
+            <div class="input-box input-box-message"  data-aos="fade-up">
+              <label for="message">Message</label>
+              <textarea name="message" id="message"></textarea>
+              <small>message d'erreur</small>
+            </div>
+          </div>
+          <input type="submit" class="btn" value="ENVOYER"  data-aos="fade-left">
+        </form>
+      </section>
+    </main>
+    <!-- pied de page -->
+
+      <footer class="main-footer"> <div class="footer-sections"  data-aos="fade-up"> <div class="footer-contact"  data-aos="fade-up">
+          <p class="footer-title"  data-aos="fade-up">Contacter Ornoir Home</p>
+          <a href="tel:+242XXXXXXXXX"  data-aos="fade-up" class="btn-second">Besoin d’aide?</a>
+        </div>
+        <div class="footer-social"  data-aos="fade-up">
+          <p class="footer-title"  data-aos="fade-up">Nous suivre sur <br>les réseaux sociaux</p>
+          <div class="social-icons"  data-aos="fade-up">
+            <a href="#"   data-aos="fade-up"  target="_blank" aria-label="Lien vers LinkedIn"><img src="./Assets/Rs/Linkedin.svg" alt="Logo Linkedin" class="social-icon" /></a>
+            <a href="#"   data-aos="fade-up" target="_blank" aria-label="Lien vers Twitter"><img src="./Assets/Rs/Twitter.svg" alt="Logo Twitter" class="social-icon" /></a>
+            <a href="#"   data-aos="fade-up" target="_blank" aria-label="Lien vers Facebook"><img src="./Assets/Rs/Facebook.svg" alt="Logo Facebook" class="social-icon" /></a>
+          </div>   
+        </div>
+        <div class="footer-newsletter" data-aos="fade-up">
+          <p class="footer-title" data-aos="fade-up">Abonnez-vous <br>à notre Newsletter</p>
+          <form action="#" method="POST" class="newsletter-form" data-aos="fade-up"> <input type="email" name="newsletter_email" placeholder="adresse e-mail" required />
+            <button type="submit" class="btn" data-aos="fade-right">S’inscrire</button>
+          </form>
+        </div>
+      </div>
+      <div class="footer-copyright" >
+        <p>&copy; 2024 Ornoir Home . Tous droits réservés</p>
+        <p>Par <a href="https://ornoir.cg" target="_blank">Ornoir Agency</a></p>
+      </div>
+    </footer>
+
+      
+    
+  </div>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+  AOS.init();
+</script>
+<script src="script.js"></script>
+
+    
+</body>
+</html>
