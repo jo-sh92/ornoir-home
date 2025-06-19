@@ -5,26 +5,23 @@ font-family: 'poppins',sans-serif;
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
-    padding:100px 1rem 80px;
-    gap: 5rem;
+    padding:100px 10% 2rem;
+    gap:5rem;
 }
 .main-box1{
     padding: 1rem;
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
 }
-.main_box1 a{
-    display: inline-block;
-    margin-top: 1rem;
-}
+
 .main_box1 h1{
     font-size: min(10vh,2.5rem);
 }
-strong{
-    color: black;
-    font-weight:800 ;
-    font-size: min(10vh,2.5rem);
+.price2{
+    font-weight: 1000;
+    font-size: calc(1rem + 4dvw);
 }
 .imgcontent{
     overflow: hidden;
@@ -41,67 +38,70 @@ img{
     position: relative;
     top: -5rem;
     padding-block: 2rem;
-    border-bottom: 1px solid var(--color-secondary);
-    grid-template-columns: repeat(auto-fit,minmax(150px,1fr));
+    border-bottom: 1px solid var(--color--secondary);
+    grid-template-columns: repeat(auto-fit,minmax(90px,1fr));
 }
 .contactform{
-    background-color:var(--color-secondary);
+    background-color:var(--color--secondary);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: white;
     padding: 1rem 2rem;
-    width: 100%;
+    border-radius: 20px;
+    min-height: 575px;;
+    min-width: 380px;
+}
+form{
     display: grid;
     place-items: center;
-    color: white;
-    border-radius: 20px;
-    height: max-content;
-    max-width: 330px;
 }
 .contactform h1{
+    text-align: center;
     font-weight: 300;
     font-size: 1rem;
-    text-align: center;
-
 }
 .contactform h2{
-    font-size: 1.25rem;
-    color: var(--color-main);
     text-align: center;
-
+    color: #E8C133;
+    font-weight: 900;
+    font-size:calc(1rem + .5dvw);
+    text-align: center;
 }
-textarea{
-    height:100px;
+input,textarea{
+    color: var(--color-light);
 }
 .contactform input,
-.contactform textarea{
+textarea{
     padding: .5rem;
-    margin-top: 1rem;
+    margin-top: .75rem;
+    height: 35px;
     width: 100%;
     background-color:transparent;
     border: 1px solid rgba(255, 255, 255, 0.5);
     border-radius: 10px;
 }
-.input-box-checkbox p{
-    display: inline;
-    font-size: .8rem;
-
+.contactform textarea{
+    height:100px;
 }
+
 .input-box-checkbox input{
     width: auto;
+    height: auto;
     appearance: none;
     border-radius: 0%;
+    transition: .5s ease;
 }
 .input-box-checkbox input:checked{
-    background-color: var(--color-main);
-    background-image: url(Assets/case_coché.png);
-    background-size: contain
+    background-color: #E8C133;
+    background-image: url(../Assets/case_coché.png);
+    background-size: cover;
 }
 .input-box small{
     visibility: hidden;
 }
-.contactform .btn{
-    border: none;
-    cursor: pointer;
-    background-color: var(--color-main);
-}
+
 .contactform .btn:hover{
     border: 1px solid var(--color-light);
 }
@@ -109,13 +109,18 @@ textarea{
 .main-page2{
     flex-direction: column;
     align-items: center;
-    padding-inline:3rem;
+    padding-inline:2.5rem;
 }
 .contactform{
-    background-color: var(--color-main);
-    max-width: 100%;
+    background-color: #E8C133;
+    width: 100%;
 }
 .contactform h2{
     color: black;
+
 }
+button[type="submit"]{
+    background-color: var(--color--secondary);
+    color: var(--color-light);
 }
+} 

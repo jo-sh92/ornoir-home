@@ -1,155 +1,230 @@
 let endscrollvalue=0
-const header=document.querySelector('header')
-window.addEventListener('scroll',()=>{
+const header=document.querySelector('.header')
+window.addEventListener("scroll",()=>{
     if(window.scrollY>endscrollvalue){
         header.style.top='-80px'
     }else{
         header.style.top='0px'        
     }
     endscrollvalue=window.scrollY
-
 })
 // Charger les pages web
-function chargerPage(page) {
-      fetch(`${page}.html`)
-        .then(res => res.text())
-        .then(data => {
-          document.querySelector("main").innerHTML = data;
-        })
-        .catch(err => {
-          document.querySelector("main").innerHTML = "<p>Erreur de chargement</p>";
-        });
-    }
-    
+function chargerPage(page){
 
-// FORMULAIRE
+  fetch(`pages/${page}.html`)
+    .then(res => {
+      if (!res.ok) throw new Error(`Fichier introuvable : ${page}.html`);
+      return res.text();
+    })
+    .then(data => {
+      document.querySelector("main").innerHTML = data;
+      sessionStorage.setItem("currentPage", page);
 
-const nom = document.querySelector('#nom');
-const email = document.querySelector('#email');
-const numero = document.querySelector('#numero');
-const message = document.querySelector('#message');
-const form=document.querySelector('form')
-const regexNom = /^[a-zA-ZÀ-ÿ\s'-]+$/;
-const regexEmail = /^[\w.-]+@[\w.-]+\.[a-zA-Z]{2,5}$/;
-const regexNumero = /^0[4-6][0-9]{7}$/;
-form.addEventListener('submit',(e)=>{
-    e.preventDefault
-})
-// === NOM ===
-nom.addEventListener('focus', () => {
-    if(nom)
-    showInfo(nom, 'Entrez votre nom complet');
+      // ← Délai léger pour laisser le DOM se mettre à jour
+      setTimeout(() => {
+        if (typeof initialiserFormulaire === 'function') {
+          initialiserFormulaire();
+        }
+      }, 5000); // 50 ms suffit souvent, tu peux augmenter à 100 si besoin
+    })
+    .catch(err => {
+      console.error("Erreur de chargement :", err);
+      document.querySelector("main").innerHTML = "<p>Erreur de chargement</p>";
+    });
+}
+    // Quand la page se charge
+window.addEventListener('DOMContentLoaded', () => {
+  // Vérifie s'il y a une page enregistrée
+  const savedPage = sessionStorage.getItem("currentPage") || "page1";
+  
+  // Charge cette page
+  chargerPage(savedPage);
 });
-nom.addEventListener('blur', () => {
-    if (nom.value.trim() === '') {
-        showError(nom, 'Ce champ est obligatoire');
-    }
-});
-nom.addEventListener('input', () => {
+
+// Fonction d'initialisation du formulaire
+function initialiserFormulaire() {
+  const form = document.querySelector('form');
+  if (!form) return; // si pas de formulaire, on quitte
+
+  const btn = form.querySelector('button[type="submit"]');
+  const nom = form.querySelector('input[type="text"]');
+  const email = form.querySelector('input[type="email"]');
+  const mobile = form.querySelector('input[type="number"]');
+  const checkbox = form.querySelector('input[type="checkbox"]');
+  const message = form.querySelector('textarea');
+
+  const regexNom = /^[A-Za-zÀ-ÖØ-öø-ÿ ]+$/;
+  const regexEmail = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}/;
+  const regexMobile = /^(06|04|05)\d{7}$/;
+  const regexMessage = /^\s*(\S.{8,}\S)\s*$/;
+
+  // NOM
+  nom.addEventListener('focus', () => {
+    if (nom.value.trim() === "") focusMessage(nom, "Veuillez entrer un nom");
+  });
+  nom.addEventListener('input', () => {
+    if (!regexNom.test(nom.value.trim())) inputMessage(nom, "Nom invalide");
+    else SavedData("Nom", nom.value.trim())
+    clearMessage(nom)
+;
+  });
+  nom.addEventListener('blur', () => {
+    if (!regexNom.test(nom.value.trim())) blurMessage(nom, "Ce champ est obligatoire");
+
+  });
+
+  // EMAIL
+  email.addEventListener('focus', () => {
+    if (email.value.trim() === "") focusMessage(email, "Veuillez entrer votre adresse mail");
+  });
+  email.addEventListener('input', () => {
+    if (!regexEmail.test(email.value.trim())) inputMessage(email, "Email invalide");
+    else SavedData("Email", email.value.trim())
+    clearMessage(email);
+  });
+  email.addEventListener('blur', () => {
+    if (!regexEmail.test(email.value.trim())) blurMessage(email, "Ce champ est obligatoire")
+
+  });
+
+  // MOBILE
+  mobile.addEventListener('focus', () => {
+    if (mobile.value.trim() === "") focusMessage(mobile, "Veuillez entrer votre numéro de téléphone");
+  });
+  mobile.addEventListener('input', () => {
+    if (!regexMobile.test(mobile.value.trim())) inputMessage(mobile, "Numéro invalide");
+    else if (mobile.value.trim().length > 9) inputMessage(mobile, "Trop long !");
+    else SavedData("Mobile", mobile.value.trim())
+    clearMessage(mobile);
+  });
+  mobile.addEventListener('blur', () => {
+    if (!regexMobile.test(mobile.value.trim())) blurMessage(mobile, "Ce champ est obligatoire");
+    else{clearMessage(input)}
+
+  });
+
+  // MESSAGE
+  message.addEventListener('focus', () => {
+    if (message.value.trim() === "") focusMessage(message, "Veuillez entrer votre message");
+  });
+  message.addEventListener('input', () => {
+    if (!regexMessage.test(message.value.trim())) inputMessage(message, "Entrer au moins 10 caractères");
+    else SavedData("Message", message.value.trim())
+    clearMessage(message);
+  });
+  message.addEventListener('blur', () => {
+    if (!regexMessage.test(message.value.trim())) blurMessage(message, "Ce champ est obligatoire");
+    else{clearMessage(input)}
+  });
+
+  // CHECKBOX
+  checkbox.addEventListener('change', (e) => {
+    if (!e.currentTarget.checked) blurMessage(checkbox, "Ce champ est obligatoire");
+    else SavedData("checkbox", true)
+    clearMessage(nom);
+  });
+
+  // SOUMISSION
+  form.addEventListener('submit', (e) => {
+    e.preventDefault(); // toujours l’empêcher d'abord
+
+    let isValid = true;
+
     if (!regexNom.test(nom.value.trim())) {
-        showError(nom, 'Nom invalide');
-    } else {
-        clearError(nom);
+      blurMessage(nom, "Nom invalide");
+      isValid = false;
     }
-});
 
-// === EMAIL ===
-email.addEventListener('focus', () => {
-    showInfo(email, 'Entrez une adresse email valide');
-});
-email.addEventListener('blur', () => {
-    if (email.value.trim() === '') {
-        showError(email, 'Ce champ est obligatoire');
-    }
-});
-email.addEventListener('input', () => {
     if (!regexEmail.test(email.value.trim())) {
-        showError(email, 'Adresse email invalide');
+      blurMessage(email, "Email invalide");
+      isValid = false;
+    }
+
+    if (!regexMobile.test(mobile.value.trim())) {
+      blurMessage(mobile, "Numéro invalide");
+      isValid = false;
+    }
+
+    if (!regexMessage.test(message.value.trim())) {
+      blurMessage(message, "Message trop court");
+      isValid = false;
+    }
+
+    if (!checkbox.checked) {
+      blurMessage(checkbox, "Ce champ est obligatoire");
+      isValid = false;
+    }
+
+    if (isValid) {
+      form.submit(); // tout est valide → envoi
     } else {
-        clearError(email);
+      btn.setAttribute("disabled", "");
     }
-});
-
-// === NUMÉRO ===
-numero.addEventListener('focus', () => {
-    showInfo(numero, 'Entrez un numéro commençant par 05, 06 ou 07');
-});
-numero.addEventListener('blur', () => {
-    if (numero.value.trim() === '') {
-        showError(numero, 'Ce champ est obligatoire');
-    }
-});
-numero.addEventListener('input', () => {
-    if (!regexNumero.test(numero.value.trim())) {
-        showError(numero, 'Numéro invalide (ex: 0601020304)');
-    } else {
-        clearError(numero);
-    }
-});
-
-// === MESSAGE ===
-message.addEventListener('focus', () => {
-    showInfo(message, 'Entrez votre message (au moins 10 caractères)');
-});
-message.addEventListener('blur', () => {
-    if (message.value.trim() === '') {
-        showError(message, 'Ce champ est obligatoire');
-    }
-});
-message.addEventListener('input', () => {
-    if (message.value.trim().length < 10) {
-        showError(message, 'Veuillez entrer au moins 10 caractères');
-    } else {
-        clearError(message);
-    }
-});
-
-// === Fonctions utilitaires ===
-function showError(input, message) {
-    const inputBox = input.parentElement;
-    const small = inputBox.querySelector('small');
-    small.textContent = message;
-    small.style.visibility = 'visible';
-    small.style.color = 'red';
+  });
 }
 
-function showInfo(input, message) {
-    const inputBox = input.parentElement;
-    const small = inputBox.querySelector('small');
-    small.textContent = message;
-    small.style.visibility = 'visible';
-    small.style.color = 'gray';
+// Fonctions utilitaires
+function SavedData(cle, valeur) {
+  localStorage.setItem(cle, JSON.stringify(valeur));
 }
 
-function clearError(input) {
-    const inputBox = input.parentElement;
-    const small = inputBox.querySelector('small');
-    small.textContent = '';
-    small.style.visibility = 'hidden';
+function focusMessage(input, Message) {
+  const input_box = input.parentElement;
+  const small = input_box.querySelector('small');
+  if (small) {
+    small.textContent = Message;
+    small.style.color = "gray";
+    small.style.visibility = "visible";
+  }
 }
 
-
-// localStorage
-function Storage(cle,valeur){
-    localStorage.setItem(cle,JSON.stringify(valeur))
+function inputMessage(input, Message) {
+  const input_box = input.parentElement;
+  const small = input_box.querySelector('small');
+  if (small) {
+    small.textContent = Message;
+    small.style.color = "red";
+    small.style.visibility = "visible";
+  }
 }
-// cacher et afficher le menu de navigation
-const menu=document.querySelector('.menu')
-const menuIcon=document.querySelector('.fa-bars')
-menuIcon.addEventListener('click',()=>{
-    menu.classList.toggle('menu-visible')
-    
-});
 
-const closeWindow=document.querySelector('.fa-xmark')
-closeWindow.addEventListener('click',()=>{
-    menu.classList.remove('menu-visible')
+function blurMessage(input, Message) {
+  const input_box = input.parentElement;
+  const small = input_box.querySelector('small');
+  if (small) {
+    small.textContent = Message;
+    small.style.color = "red";
+    small.style.visibility = "visible";
+  }
+}
+function clearMessage(input){
+  const input_box = input.parentElement;
+  const small = input_box.querySelector('small');
+  small.style.visibility = "hidden";
+}
+
+// Creation du Menu
+const body = document.body;
+// Ajoute le menu au DOM
+
+const nav=document.querySelector('nav')
+const select=document.querySelector('.header__call__select')
+const menu=document.createElement('div')
+body.appendChild(menu);
+menu.classList.add('menu')
+
+// cloner navbar et le select
+const navbar=document.createElement('div')
+navbar.innerHTML=nav.innerHTML
+const select_clone=select.cloneNode(true)
+menu.appendChild(navbar)
+menu.appendChild(select_clone)
+select_clone.classList.add('select_clone')
+navbar.classList.add('navbar')
+
+// cacher ou apparaitre le menu
+const burger=document.querySelector('.burger')
+burger.addEventListener('click',()=>{
+  menu.classList.toggle('active')
+  burger.classList.toggle('active')
 })
-// language select
-const caret_down=document.querySelector('.fa-caret-down')
-const caret_up=document.querySelector('.fa-caret-up')
-
-// document.querySelector('select').addEventListener('click',()=>{
-//     caret_down.
-//     caret_up.style.display='inline'
-// })
