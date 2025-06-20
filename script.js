@@ -22,11 +22,11 @@ function chargerPage(page){
 
       // ← Délai léger pour laisser le DOM se mettre à jour
       setTimeout(() => {
-        if (typeof initialiserFormulaire === 'function') {
-          initialiserFormulaire();
-        }
-      }, 5000); // 50 ms suffit souvent, tu peux augmenter à 100 si besoin
+        if (typeof initialiserLightbox === 'function') initialiserLightbox();
+        if (typeof initialiserFormulaire === 'function') initialiserFormulaire();
+      }, 100); // petit délai pour s'assurer que le DOM est prêt
     })
+       
     .catch(err => {
       console.error("Erreur de chargement :", err);
       document.querySelector("main").innerHTML = "<p>Erreur de chargement</p>";
@@ -210,7 +210,7 @@ const body = document.body;
 const nav=document.querySelector('nav')
 const select=document.querySelector('.header__call__select')
 const menu=document.createElement('div')
-body.appendChild(menu);
+header.appendChild(menu)
 menu.classList.add('menu')
 
 // cloner navbar et le select
@@ -227,4 +227,87 @@ const burger=document.querySelector('.burger')
 burger.addEventListener('click',()=>{
   menu.classList.toggle('active')
   burger.classList.toggle('active')
+  document.body.classList.toggle('active')
 })
+const main=document.querySelector('main')
+main.addEventListener('click',()=>{
+  menu.classList.remove('active')
+  burger.classList.remove('active')
+  document.body.classList.remove('active')
+})
+// Click sur image
+let currentIndex = 0;
+let imagesArray = [];
+
+function initialiserLightbox() {
+  // Création si pas déjà dans le DOM
+  let lightbox = document.querySelector('.lightbox');
+  if (!lightbox) {
+    lightbox = document.createElement('div');
+    lightbox.classList.add('lightbox');
+    document.body.appendChild(lightbox);
+  }
+const footer=document.querySelector('footer')
+  // Contenu HTML
+  lightbox.innerHTML = `
+    <span class="lightbox-close">&times;</span>
+    <img src="" alt="image en grand">
+    <button class="lightbox-prev"><i class="fa-solid fa-arrow-left"></i></button>
+    <button class="lightbox-next"><i class="fa-solid fa-arrow-right"></i></button>
+  `;
+
+  const imgLightbox = lightbox.querySelector('img');
+  const closeBtn = lightbox.querySelector('.lightbox-close');
+  const nextBtn = lightbox.querySelector('.lightbox-next');
+  const prevBtn = lightbox.querySelector('.lightbox-prev');
+
+  // Récupère toutes les images visibles (hors logo, etc.)
+imagesArray = Array.from(document.querySelectorAll('img')).filter(img => {
+  return !img.closest('header') && !img.closest('footer');
+});
+
+  // Ajout des événements sur chaque image
+  imagesArray.forEach((img, index) => {
+    img.addEventListener('click', () => {
+      currentIndex = index;
+      showImage();
+      lightbox.style.display = 'flex';
+    });
+  });
+
+  // Fonction pour afficher une image
+  function showImage() {
+    imgLightbox.src = imagesArray[currentIndex].src;
+  }
+
+  // Navigation
+  nextBtn.addEventListener('click', () => {
+    currentIndex = (currentIndex + 1) % imagesArray.length;
+    showImage();
+  });
+  nextBtn.addEventListener('keydown', (e) => {
+  if (e.key === 'Enter' || e.key === ' ' || e.key === 'ArrowRight') {
+    e.preventDefault(); // Évite le scroll sur "espace"
+    currentIndex = (currentIndex + 1) % imagesArray.length;
+    showImage();
+  }
+});
+
+
+  prevBtn.addEventListener('click', () => {
+    currentIndex = (currentIndex - 1 + imagesArray.length) % imagesArray.length;
+    showImage();
+  });
+prevBtn.addEventListener('keydown', (e) => {
+  if (e.key === 'Enter' || e.key === ' ' || e.key === 'ArrowRight') {
+    e.preventDefault(); // Évite le scroll sur "espace"
+    currentIndex = (currentIndex + 1) % imagesArray.length;
+    showImage();
+  }
+});
+
+  // Fermeture
+  closeBtn.addEventListener('click', () => {
+    lightbox.style.display = 'none';
+  });
+}
