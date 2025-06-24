@@ -1,12 +1,14 @@
-*{
-font-family: 'poppins',sans-serif;
-}
+
 .main-page2{
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
     padding:100px 10% 2rem;
     gap:5rem;
+}
+.main-page2 img{
+    width: 100%;
+    object-fit: cover;
+    height: 100%;
 }
 .main-box1{
     padding: 1rem;
@@ -26,12 +28,13 @@ font-family: 'poppins',sans-serif;
 .imgcontent{
     overflow: hidden;
 } 
-img{
+
+.input-box{
     width: 100%;
-    height: 100%;
-    object-fit: cover;
 }
 .container-img{
+    width: 100%;
+    object-fit: cover;
     margin-top: 5rem;
     display: grid;
     gap: .5rem;
@@ -43,29 +46,25 @@ img{
 }
 .contactform{
     background-color:var(--color--secondary);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    color: white;
     padding: 1rem 2rem;
     border-radius: 20px;
-    min-height: 575px;;
-    min-width: 380px;
+    max-height: max-content;
+    color: var(--color-light);
 }
 form{
     display: grid;
+    width: 100%;
     place-items: center;
 }
 .contactform h1{
+    margin-bottom: .5rem;
     text-align: center;
     font-weight: 300;
     line-height: 1;
-    font-size: 1rem;
+    font-size: 1.1rem;
 }
 .contactform h2{
     line-height: 1;
-    text-align: center;
     color: #E8C133;
     font-weight: 900;
     font-size:calc(1rem + .5dvw);
@@ -74,10 +73,9 @@ form{
 input,textarea{
     color: var(--color-light);
 }
-.contactform input,
-textarea{
+.input-box input,.input-box textarea{
     padding: .5rem;
-    margin-top: .75rem;
+    margin-top: 1rem;
     height: 35px;
     width: 100%;
     background-color:transparent;
@@ -86,6 +84,7 @@ textarea{
 }
 .contactform textarea{
     height:100px;
+    resize: none;
 }
 
 .input-box-checkbox input{
@@ -109,12 +108,13 @@ textarea{
 }
 @media screen and (max-width:1000px){
 .main-page2{
+    display: flex;
     flex-direction: column;
     align-items: center;
     padding-inline:2.5rem;
 }
 .contactform{
-    width: 100%;
+    max-width:480px;
 }
 
 } 

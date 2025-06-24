@@ -9,30 +9,39 @@ window.addEventListener("scroll",()=>{
     endscrollvalue=window.scrollY
 })
 // Charger les pages web
-function chargerPage(page){
-
+function chargerPage(page) {
   fetch(`pages/${page}.html`)
     .then(res => {
-      if (!res.ok) throw new Error(`Fichier introuvable : ${page}.html`);
+      if (!res.ok)
+        throw new Error(`Fichier introuvable : ${page}.html`);
       return res.text();
     })
     .then(data => {
+      // Injecte le HTML dans la balise <main>
       document.querySelector("main").innerHTML = data;
+
+      // Sauvegarde la page dans sessionStorage
       sessionStorage.setItem("currentPage", page);
 
-      // ← Délai léger pour laisser le DOM se mettre à jour
+      const styleLink = document.getElementById("style-page");
+      if (styleLink) {
+        styleLink.setAttribute("href", `styles/${page}.css`);
+      }
+
+      // Délai pour s'assurer que le DOM est prêt
       setTimeout(() => {
         if (typeof initialiserLightbox === 'function') initialiserLightbox();
         if (typeof initialiserFormulaire === 'function') initialiserFormulaire();
-      }, 100); // petit délai pour s'assurer que le DOM est prêt
+        // Mise à jour du fichier CSS lié à la page
+      
+      }, 100);
     })
-       
     .catch(err => {
       console.error("Erreur de chargement :", err);
-      document.querySelector("main").innerHTML = "<p>Erreur de chargement</p>";
+      document.querySelector("main").innerHTML = "<p>Erreur de chargement de la page.</p>";
     });
 }
-    // Quand la page se charge
+  // Quand la page se charge
 window.addEventListener('DOMContentLoaded', () => {
   // Vérifie s'il y a une page enregistrée
   const savedPage = sessionStorage.getItem("currentPage") || "page1";
@@ -311,3 +320,9 @@ prevBtn.addEventListener('keydown', (e) => {
     lightbox.style.display = 'none';
   });
 }
+let lcp;
+const observer = new PerformanceObserver((entryList) => {
+  const entries = entryList.getEntries();
+  lcp = entries[entries.length - 1];
+});
+observer.observe({ type: 'largest-contentful-paint', buffered: true });

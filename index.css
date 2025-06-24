@@ -1,18 +1,19 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 *{
-    font-family: 'poppons',sans-serif;
+    font-family: 'poppins',sans-serif;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     text-decoration: none;
     outline: none;
+    
 }
 small{
     visibility: hidden;
 }
 .wrapper{
     overflow: hidden;
-    scroll-behavior: smooth;
+    /* scroll-behavior: smooth; */
 }
 :root{
     --color-primary:#E8C133;
@@ -28,6 +29,7 @@ small{
     text-transform: uppercase;
     background-color: var(--color-primary);
     font-weight: 600;
+
 }
 img.active{
     position: absolute;
@@ -53,14 +55,15 @@ img.active{
     height: 80px;
     transition: .5s ease;
 }
-.header h1>a{
+.header h1{
+    cursor: pointer;
     display: grid;
     place-items: center;
 
 }
 .logo{
     width: 140px;
-    height: 100%;
+    /* height: 100%; */
 }
 .nav ul{
     display: flex;
@@ -99,12 +102,13 @@ img.active{
     border-radius: 50%;
     appearance: none;
     border: .75px solid var(--color--secondary);
-    padding: 10px;
-    display: grid;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     background-color: transparent;
-    place-items: center;
     
 }
+
 .header__call__select select{
     padding: 14px;
     transition: .5s ease;
@@ -117,16 +121,19 @@ img.active{
 
 }
 .header__call__select a{
+    padding: 20px;
     transition: all .5s ease;
 }
 .header__call__select a:hover{
     background-color:#fff;
     border: none;
+    scale: 1.1;
     filter: invert(1);
 }
 .burger{
     display:none;
-    transition: .5s ease;
+    transition: .5s ease allow-discrete;
+    /*  */
 
 } 
 .burger span{
@@ -136,11 +143,9 @@ img.active{
     background-color: var(--color--secondary);
     height: 2px;
 }
-.burger span:hover{
-width: 24px;
+.burger span:nth-child(2){
+    width: 12px;
 }
- 
-
 
 /* --- FOOTER --- */
 .main-footer {
@@ -160,7 +165,7 @@ width: 24px;
     grid-template-columns: repeat(auto-fit,minmax(200px,1fr));
     place-items: center;
     gap: 2rem;
-    padding:80px min(2rem,80px);
+    padding:80px 2rem;
     width: 100%;
     font-size: 1.2rem; /* Taille de police ajustée */
     line-height: 1.2;
@@ -185,7 +190,7 @@ width: 24px;
 }
 
 .btn-second {
-    background-color: var(--color--secondarysecondary);
+    background-color: var(--color--secondary);
     color: var(--color-light);
     border: 1px solid var(--color-light);
     border-radius: 20px;
@@ -209,14 +214,12 @@ width: 24px;
 }
 
 .social-icons .social-icon {
-    flex:1;
-    /* width: 40px; /* Taille des icônes 
-    height: 40px; */
+    /* flex:1; */
     transition: all ease 0.3s;
 }
 
 .social-icons .social-icon:hover {
-    transform: scale(1.3); /* Utiliser transform: scale */
+    transform: scale(1.3); 
 }
 
 .newsletter-form {
@@ -252,12 +255,6 @@ width: 24px;
 .newsletter-form input:hover::placeholder {
     transform: translateY(-5px); /* Animation plus subtile */
 }
-
-.newsletter-form .btn{
-    border: none;
-
-}
-
 .newsletter-form .btn:hover {
     border: 1px solid var(--color-light);
     color: var(--color-light);
@@ -275,10 +272,8 @@ width: 24px;
     flex-wrap: wrap; /* Pour la responsivité */
     gap: 2rem;
 }
-
-.footer-copyright p, .footer-copyright a {
+.footer-copyright a {
     color: var(--color-light);
-    font-size: 0.9rem;
 }
 
 .footer-copyright a:hover {
@@ -332,10 +327,7 @@ body.active{
     overflow: hidden;
 }
 .burger.active span:nth-child(3) {
-  transform: rotate(-45deg) translate(6px, -6px);
-}
-.burger:hover span{
-    background-color:rgba(0,0,0,0.5);
+  transform: rotate(-45deg) translate(5px, -5px);
 }
 
 .navbar a{
@@ -352,7 +344,7 @@ body.active{
     padding: 2rem;
 
 }
-.navbar ul a:hover{
+.navbar ul li:hover{
     background-color: var(--color-primary);
 }
 .select_clone{
@@ -367,8 +359,8 @@ body.active{
   display: none;
   position: fixed;
   top: 0; left: 0;
-  width: 100vw;
-  height: 100vh;
+  width: 100dvw;
+  height: 100dvh;
   background: rgba(0,0,0,0.9);
   justify-content: center;
   align-items: center;
@@ -402,6 +394,9 @@ body.active{
   left: 20px;
   top: 50%;
   transform: translateY(-50%);
+}
+.logo{
+    width: 70%;
 }
 
 .lightbox-next {
