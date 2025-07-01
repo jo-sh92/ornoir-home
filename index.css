@@ -346,10 +346,11 @@ body.active{
 }
 
 .navbar ul a{
-    text-align: center;
+    text-align: right;
     display: inline-block;
     width: 100dvw;
-    padding: 2rem;
+    padding: 1.5rem;
+    padding-right: 3rem;
 
 }
 .navbar ul li:hover{

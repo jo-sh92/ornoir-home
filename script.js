@@ -110,7 +110,7 @@ function initialiserFormulaire() {
   });
   mobile.addEventListener('blur', () => {
     if (!regexMobile.test(mobile.value.trim())) blurMessage(mobile, "Ce champ est obligatoire");
-    else{clearMessage(mobile)}
+    else{clearMessage(input[type="tel"])}
 
   });
 
