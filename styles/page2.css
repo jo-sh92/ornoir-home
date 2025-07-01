@@ -25,6 +25,10 @@
     font-weight: 1000;
     font-size: calc(1rem + 4dvw);
 }
+ol>li::marker{
+    font-size: 24px;
+    font-weight: bold;
+}
 .imgcontent{
     overflow: hidden;
 } 
@@ -46,7 +50,7 @@
 }
 .contactform{
     background-color:var(--color--secondary);
-    padding: 1rem 2rem;
+    padding: 2rem;
     border-radius: 20px;
     max-height: max-content;
     color: var(--color-light);

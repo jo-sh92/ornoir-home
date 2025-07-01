@@ -56,9 +56,9 @@ function initialiserFormulaire() {
   if (!form) return; // si pas de formulaire, on quitte
 
   const btn = form.querySelector('button[type="submit"]');
-  const nom = form.querySelector('input[type="text"]');
+  const noms = form.querySelectorAll('input[type="text"]');
   const email = form.querySelector('input[type="email"]');
-  const mobile = form.querySelector('input[type="number"]');
+  const mobile = form.querySelector('input[type="tel"]');
   const checkbox = form.querySelector('input[type="checkbox"]');
   const message = form.querySelector('textarea');
 
@@ -68,6 +68,7 @@ function initialiserFormulaire() {
   const regexMessage = /^\s*(\S.{8,}\S)\s*$/;
 
   // NOM
+  noms.forEach(nom=>{
   nom.addEventListener('focus', () => {
     if (nom.value.trim() === "") focusMessage(nom, "Veuillez entrer un nom");
   });
@@ -81,7 +82,7 @@ function initialiserFormulaire() {
     if (!regexNom.test(nom.value.trim())) blurMessage(nom, "Ce champ est obligatoire");
 
   });
-
+})
   // EMAIL
   email.addEventListener('focus', () => {
     if (email.value.trim() === "") focusMessage(email, "Veuillez entrer votre adresse mail");
@@ -95,6 +96,7 @@ function initialiserFormulaire() {
     if (!regexEmail.test(email.value.trim())) blurMessage(email, "Ce champ est obligatoire")
 
   });
+      btn.setAttribute("disabled", "");
 
   // MOBILE
   mobile.addEventListener('focus', () => {
@@ -108,7 +110,7 @@ function initialiserFormulaire() {
   });
   mobile.addEventListener('blur', () => {
     if (!regexMobile.test(mobile.value.trim())) blurMessage(mobile, "Ce champ est obligatoire");
-    else{clearMessage(input)}
+    else{clearMessage(mobile)}
 
   });
 
@@ -123,14 +125,14 @@ function initialiserFormulaire() {
   });
   message.addEventListener('blur', () => {
     if (!regexMessage.test(message.value.trim())) blurMessage(message, "Ce champ est obligatoire");
-    else{clearMessage(input)}
+    else{clearMessage(message)}
   });
 
   // CHECKBOX
   checkbox.addEventListener('change', (e) => {
     if (!e.currentTarget.checked) blurMessage(checkbox, "Ce champ est obligatoire");
     else SavedData("checkbox", true)
-    clearMessage(nom);
+    clearMessage(checkbox);
   });
 
   // SOUMISSION
@@ -139,10 +141,9 @@ function initialiserFormulaire() {
 
     let isValid = true;
 
-    if (!regexNom.test(nom.value.trim())) {
+    noms.forEach(nom=>{if (!regexNom.test(nom.value.trim())) {
       blurMessage(nom, "Nom invalide");
-      isValid = false;
-    }
+      isValid = false;}})
 
     if (!regexEmail.test(email.value.trim())) {
       blurMessage(email, "Email invalide");
@@ -166,12 +167,11 @@ function initialiserFormulaire() {
 
     if (isValid) {
       form.submit(); // tout est valide → envoi
-    } else {
-      btn.setAttribute("disabled", "");
-    }
+      alert('✅ formulaire envoyé ')
+      
+    } 
   });
 }
-
 // Fonctions utilitaires
 function SavedData(cle, valeur) {
   localStorage.setItem(cle, JSON.stringify(valeur));

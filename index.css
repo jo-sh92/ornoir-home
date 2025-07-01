@@ -29,6 +29,7 @@ small{
     text-transform: uppercase;
     background-color: var(--color-primary);
     font-weight: 600;
+    cursor:pointer
 
 }
 img.active{
@@ -36,7 +37,7 @@ img.active{
     top: 0;
     left: 0;
     overflow: hidden;
-    aspect-ratio: 16/9;
+    object-fit: contain;
 }
 .menu{
     display: none;
@@ -97,8 +98,7 @@ img.active{
     gap: 2rem;
 }
 .header__call__select>*{
-    width: 48px;
-    height: 48px;
+    
     border-radius: 50%;
     appearance: none;
     border: .75px solid var(--color--secondary);
@@ -110,8 +110,9 @@ img.active{
 }
 
 .header__call__select select{
-    padding: 14px;
     transition: .5s ease;
+    font-size: 18px;
+    padding: .5rem;
 }
 .header__call__select select:hover{
     scale: 1.1;
@@ -121,8 +122,14 @@ img.active{
 
 }
 .header__call__select a{
-    padding: 20px;
+    width: 48px;
+    height: 48px;
+    padding: .5rem;
     transition: all .5s ease;
+}
+.header__call__select>a>img{
+    width: 100%;
+
 }
 .header__call__select a:hover{
     background-color:#fff;
@@ -279,6 +286,7 @@ img.active{
 .footer-copyright a:hover {
     text-decoration: underline;
 }
+
 @media screen and (max-width:800px){
     .nav,.header__call__select{
         display: none;
